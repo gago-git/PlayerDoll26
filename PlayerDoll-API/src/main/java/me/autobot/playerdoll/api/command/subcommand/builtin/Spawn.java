@@ -14,6 +14,7 @@ import me.autobot.playerdoll.api.doll.DollNameUtil;
 import me.autobot.playerdoll.api.doll.DollStorage;
 import me.autobot.playerdoll.api.inv.button.PersonalFlagButton;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -41,6 +42,12 @@ public class Spawn extends SubCommand implements DollCommandExecutor {
             caller.sendMessage(LangFormatter.YAMLReplaceMessage("spawn-error", targetString));
             return;
         }
+        OfflinePlayer offlineDoll = Bukkit.getOfflinePlayer(targetUUID);
+        if (!offlineDoll.isWhitelisted() && Bukkit.hasWhitelist()) {
+            offlineDoll.setWhitelisted(true);
+            Bukkit.reloadWhitelist();
+        }
+
         // Spawn with Prefixed value (can be flexibly changed)
         PlayerDollAPI.getConnection().connect(profile, caller);
         //DollConnection.connect(profile, caller);
