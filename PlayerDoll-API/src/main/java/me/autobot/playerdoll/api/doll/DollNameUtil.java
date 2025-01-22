@@ -14,12 +14,12 @@ public final class DollNameUtil {
         if (DOLL_IDENTIFIER.isEmpty()) {
             return name;
         } else {
-            return name.startsWith(DOLL_IDENTIFIER) ? name.substring(1) : name;
+            return name.replaceAll(DOLL_IDENTIFIER, "");
         }
     }
 
     public static String dollFullName(String name) {
-        return name.startsWith(DOLL_IDENTIFIER) ? name : DOLL_IDENTIFIER.concat(name);
+        return DOLL_IDENTIFIER.concat(name.replaceAll(DOLL_IDENTIFIER, ""));
     }
 
     public static String getNamePatternCommand() {
