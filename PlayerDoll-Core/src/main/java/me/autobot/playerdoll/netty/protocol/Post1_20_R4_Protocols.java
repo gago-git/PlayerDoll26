@@ -2,7 +2,9 @@ package me.autobot.playerdoll.netty.protocol;
 
 
 import io.netty.buffer.ByteBuf;
+import me.autobot.playerdoll.api.PlayerDollAPI;
 import me.autobot.playerdoll.api.ReflectionUtil;
+import me.autobot.playerdoll.api.constant.AbsServerVersion;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -116,13 +118,24 @@ public abstract class Post1_20_R4_Protocols {
             return field;
         };
 
-        Class<?> protocolInfoUnboundClass = ReflectionUtil.getClass("net.minecraft.network.ProtocolInfo$a");
-        Objects.requireNonNull(protocolInfoUnboundClass, "ProtocolInfo$Unbound.class");
-        Method unboundBindMethod = Arrays.stream(protocolInfoUnboundClass.getDeclaredMethods())
-                .filter(method -> method.getReturnType() == protocolInfoClass)
-                .findFirst()
-                .orElseThrow();
-        unboundBindMethod.setAccessible(true);
+        Method unboundBindMethod;
+        if (PlayerDollAPI.getServerVersion() == AbsServerVersion.v1_21_R4) {
+            Class<?> protocolInfoUnboundClass = ReflectionUtil.getClass("net.minecraft.network.protocol.SimpleUnboundProtocol");
+            Objects.requireNonNull(protocolInfoUnboundClass, "SimpleUnboundProtocol.class");
+            unboundBindMethod = Arrays.stream(protocolInfoUnboundClass.getDeclaredMethods())
+                    .filter(method -> method.getReturnType() == protocolInfoClass)
+                    .findFirst()
+                    .orElseThrow();
+            unboundBindMethod.setAccessible(true);
+        } else {
+            Class<?> protocolInfoUnboundClass = ReflectionUtil.getClass("net.minecraft.network.ProtocolInfo$a");
+            Objects.requireNonNull(protocolInfoUnboundClass, "ProtocolInfo$Unbound.class");
+            unboundBindMethod = Arrays.stream(protocolInfoUnboundClass.getDeclaredMethods())
+                    .filter(method -> method.getReturnType() == protocolInfoClass)
+                    .findFirst()
+                    .orElseThrow();
+            unboundBindMethod.setAccessible(true);
+        }
 
         Class<?> registryFriendlyByteBufClass = ReflectionUtil.getClass("net.minecraft.network.RegistryFriendlyByteBuf");
         Objects.requireNonNull(registryFriendlyByteBufClass, "RegistryFriendlyByteBuf.class");
@@ -131,12 +144,31 @@ public abstract class Post1_20_R4_Protocols {
                 .findFirst().orElseThrow();
         decoratorMethod.setAccessible(true);
 
-        Object clientPlayProtocolTemplate = ReflectionUtil.getField(getGameProtocolTemplate.apply(playProtocolsClass, true), null);
-        Object serverPlayProtocolTemplate = ReflectionUtil.getField(getGameProtocolTemplate.apply(playProtocolsClass, false), null);
-        Object decoratorFunction = ReflectionUtil.invokeMethod(decoratorMethod, null, registryFrozen);
+        if (PlayerDollAPI.getServerVersion() == AbsServerVersion.v1_21_R4) {
+            Class<?> protocolInfoUnboundClass = ReflectionUtil.getClass("net.minecraft.network.protocol.UnboundProtocol");
+            Objects.requireNonNull(protocolInfoUnboundClass, "UnboundProtocol.class");
+            Method _unboundBindMethod = Arrays.stream(protocolInfoUnboundClass.getDeclaredMethods())
+                    .filter(method -> method.getReturnType() == protocolInfoClass)
+                    .findFirst()
+                    .orElseThrow();
+            _unboundBindMethod.setAccessible(true);
 
-        CLIENT_PLAY_PROTOCOL = ReflectionUtil.invokeMethod(unboundBindMethod, clientPlayProtocolTemplate, decoratorFunction);
-        SERVER_PLAY_PROTOCOL = ReflectionUtil.invokeMethod(unboundBindMethod, serverPlayProtocolTemplate, decoratorFunction);
+            Object clientPlayProtocolTemplate = ReflectionUtil.getField(getGameProtocolTemplate.apply(playProtocolsClass, true), null);
+            Object serverPlayProtocolTemplate = ReflectionUtil.getField(getGameProtocolTemplate.apply(playProtocolsClass, false), null);
+            Object decoratorFunction = ReflectionUtil.invokeMethod(decoratorMethod, null, registryFrozen);
+
+            CLIENT_PLAY_PROTOCOL = ReflectionUtil.invokeMethod(unboundBindMethod, clientPlayProtocolTemplate, decoratorFunction);
+            // Context
+            SERVER_PLAY_PROTOCOL = ReflectionUtil.invokeMethod(_unboundBindMethod, serverPlayProtocolTemplate, decoratorFunction, null);
+
+        } else {
+            Object clientPlayProtocolTemplate = ReflectionUtil.getField(getGameProtocolTemplate.apply(playProtocolsClass, true), null);
+            Object serverPlayProtocolTemplate = ReflectionUtil.getField(getGameProtocolTemplate.apply(playProtocolsClass, false), null);
+            Object decoratorFunction = ReflectionUtil.invokeMethod(decoratorMethod, null, registryFrozen);
+
+            CLIENT_PLAY_PROTOCOL = ReflectionUtil.invokeMethod(unboundBindMethod, clientPlayProtocolTemplate, decoratorFunction);
+            SERVER_PLAY_PROTOCOL = ReflectionUtil.invokeMethod(unboundBindMethod, serverPlayProtocolTemplate, decoratorFunction);
+        }
     }
 
 

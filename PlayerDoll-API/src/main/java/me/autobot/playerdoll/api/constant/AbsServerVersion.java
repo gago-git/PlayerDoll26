@@ -41,6 +41,7 @@ public abstract class AbsServerVersion {
     public static AbsServerVersion v1_21_R2;
 
     public static AbsServerVersion v1_21_R3;
+    public static AbsServerVersion v1_21_R4;
 
     private final int protocol;
     public AbsServerVersion(int protocol) {

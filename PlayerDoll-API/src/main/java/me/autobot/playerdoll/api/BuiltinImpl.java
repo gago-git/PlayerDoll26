@@ -129,5 +129,16 @@ public final class BuiltinImpl {
                 return ver.matches("1\\.21\\.4");
             }
         };
+        AbsServerVersion.v1_21_R4 = new AbsServerVersion(770) {
+            @Override
+            public String registerVersion() {
+                return "v1_21_R4";
+            }
+
+            @Override
+            public boolean match(String ver) {
+                return ver.matches("1\\.21\\.5");
+            }
+        };
     }
 }
