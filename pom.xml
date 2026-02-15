@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>me.autobot</groupId>
+    <artifactId>PlayerDoll-Parent</artifactId>
+    <version>3.0</version>
+    <packaging>pom</packaging>
+
+    <name>PlayerDoll</name>
+
+    <repositories>
+        <repository>
+            <id>spigotmc-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>papermc-repo</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+        <repository>
+            <id>mojang-libs</id>
+            <url>https://libraries.minecraft.net/</url>
+        </repository>
+    </repositories>
+
+    <modules>
+        <module>PlayerDoll-API</module>
+        <module>PlayerDoll-Core</module>
+
+        <module>Addon-Folia</module>
+        <module>Addon-Doll-v1_21_0-1_21_1</module>
+        <module>Addon-Doll-v1_21_2-1_21_3</module>
+        <module>Addon-Doll-v1_21_4</module>
+        <module>Addon-Doll-v1_21_5</module>
+        <module>Addon-Doll-v1_21_6A</module>
+        <module>Addon-Doll-v1_21_6P</module>
+        <module>Addon-Doll-v1_21_7-1_21_8</module>
+        <module>Addon-Doll-v1_21_9</module>
+        <module>Addon-Doll-v1_21_10</module>
+        <module>Addon-Doll-v1_21_11</module>
+
+        <module>Addon-Wrapper-1_20_2-1_21_1</module>
+        <module>Addon-Wrapper-1_21_2-1_21_4</module>
+        <module>Addon-Wrapper-1_21_5</module>
+        <module>Addon-Wrapper-1_21_6</module>
+        <module>Addon-Wrapper-1_21_7_1_21_8</module>
+        <module>Addon-Wrapper-1_21_9</module>
+        <module>Addon-Wrapper-1_21_10</module>
+        <module>Addon-Wrapper-1_21_11</module>
+
+        <module>Output</module>
+    </modules>
+
+</project>

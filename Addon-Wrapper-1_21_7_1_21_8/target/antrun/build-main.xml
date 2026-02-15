@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="maven-antrun-" default="main">
+  <target name="main">
+    <copy file="C:\Users\Maciel Junior\PlayerDoll-2.3.2\Addon-Wrapper-1_21_7_1_21_8\target/Addon-Wrapper-1_21_7_1_21_8-3.0.jar" tofile="C:\Users\Maciel Junior\PlayerDoll-2.3.2\Addon-Wrapper-1_21_7_1_21_8\target/../../Output_Addons/Spigot/Addon-Wrapper-1_21_7_1_21_8-Spigot.jar" />
+    <copy file="C:\Users\Maciel Junior\PlayerDoll-2.3.2\Addon-Wrapper-1_21_7_1_21_8\target/original-Addon-Wrapper-1_21_7_1_21_8-3.0.jar" tofile="C:\Users\Maciel Junior\PlayerDoll-2.3.2\Addon-Wrapper-1_21_7_1_21_8\target/../../Output_Addons/Mojang/Addon-Wrapper-1_21_7_1_21_8-Mojang.jar" />
+  </target>
+</project>

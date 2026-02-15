@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="maven-antrun-" default="main">
+  <target name="main">
+    <copy file="C:\Users\Maciel Junior\PlayerDoll-2.3.2\Addon-Doll-v1_21_6P\target/Addon-Doll-v1_21_6P-3.0.jar" tofile="C:\Users\Maciel Junior\PlayerDoll-2.3.2\Addon-Doll-v1_21_6P\target/../../Output_Addons/Spigot/Addon-Doll-v1_21_6P-Spigot.jar" />
+    <copy file="C:\Users\Maciel Junior\PlayerDoll-2.3.2\Addon-Doll-v1_21_6P\target/original-Addon-Doll-v1_21_6P-3.0.jar" tofile="C:\Users\Maciel Junior\PlayerDoll-2.3.2\Addon-Doll-v1_21_6P\target/../../Output_Addons/Mojang/Addon-Doll-v1_21_6P-Mojang.jar" />
+  </target>
+</project>
