@@ -3,36 +3,87 @@ Simple Standalone Fake Player Plugin for Spigot, Paper, Folia 1.20.2+ [Java 17+]
 
 [Modrinth](https://modrinth.com/plugin/playerdoll)
 
-Release avaliable on Modrinth.
+Release available on Modrinth.
 
+Detailed usage has been migrated to [Wiki](https://github.com/sjavi4/PlayerDoll/wiki).
 
+## Fork Notice
 
-Detailed Usage has been migrated to [Wiki](https://github.com/sjavi4/PlayerDoll/wiki)
+This repository is a maintained fork of the original project:
+
+- Original project: https://github.com/sjavi4/PlayerDoll
+- Original author: `sjavi4`
+- Fork maintainer: `gago-git`
+
+Attribution and publication notes are available in:
+
+- `NOTICE.md` / `NOTICE.en.md`
+- `CREDITS.md` / `CREDITS.en.md`
+
+## Fork Scope (This Repository)
+
+This fork focuses on maintenance and compatibility for the Minecraft 1.21 line.
+
+- Supported range in this fork: **1.21.0 through 1.21.11**
+- Current project version in this fork: **3.0**
+
+### Version modules in this fork
+
+- `Addon-Doll-v1_21_0-1_21_1`
+- `Addon-Doll-v1_21_2-1_21_3`
+- `Addon-Doll-v1_21_4`
+- `Addon-Doll-v1_21_5`
+- `Addon-Doll-v1_21_6A`
+- `Addon-Doll-v1_21_6P`
+- `Addon-Doll-v1_21_7-1_21_8`
+- `Addon-Doll-v1_21_9`
+- `Addon-Doll-v1_21_10`
+- `Addon-Doll-v1_21_11`
+
+Wrapper modules:
+
+- `Addon-Wrapper-1_20_2-1_21_1`
+- `Addon-Wrapper-1_21_2-1_21_4`
+- `Addon-Wrapper-1_21_5`
+- `Addon-Wrapper-1_21_6`
+- `Addon-Wrapper-1_21_7_1_21_8`
+- `Addon-Wrapper-1_21_9`
+- `Addon-Wrapper-1_21_10`
+- `Addon-Wrapper-1_21_11`
 
 ## Disclaimer
 
-<b>This plugin is highly dependent on NMS, slightly changes made by Mojang / Server Jar provider might cause this plugin no longer working.<br>
-Please use it with caution</b>
+**This plugin is highly dependent on NMS. Small changes made by Mojang / server jar providers might cause this plugin to stop working. Please use it with caution.**
 
+Features provided by this plugin are not guaranteed to be fully working, and it is not encouraged to treat this plugin as a paid feature to other players.
 
-<i>Features provided by this plugin are not GUARANTEE to be fully working, it is not encouraged to treat this plugin as a pay feature to other players.</i>
+## How to Use
 
+### Upgrade from old version (v1.28+)
 
-## How to use
+1. Back up and delete old configs (except doll configs).
+2. Start the server to regenerate new configs (with comments/usages).
+3. Copy old settings to the new config keys according to their usage.
 
-### Upgrade from old version (v1.28 above)
-1. Backup and delete the old configs, (except doll configs).
-   * Then start up server to regenerate new configs (with comments and usages)
-2. Copy settings from old config to the new one, and set for new config keys according their usage
+### In game (v1.28+)
 
-### In game (v1.28 above)
-1. player without permission will not display the corrisponding command (or arguments)
-   * `doll` or `playerdoll:doll` are the main commands
-   * `dollmanage` or `playerdoll:dollmanage` are the same from above, but they bypass some optional checking. OP is reqiured by default
-   * To create doll, enter `/doll create <name> [skin]` and wait for server to setup the config.
-   * After creating doll, enter `/doll spawn <name>` to let the doll connect to the server.
-2. Most of the Doll data modification are require Doll to be online.
-   * Except `Remove`
-   * `/doll set` command is Doll specific settings (Doll behavior)
-   * `/doll gset` command is settings for <b>all players</b> (command permission)
-   * `/doll pset` command is settings for <b>specific players</b> (Override Gset if set)
+1. Players without permission will not see corresponding commands/arguments.
+2. Main commands:
+   - `doll` or `playerdoll:doll`
+   - `dollmanage` or `playerdoll:dollmanage` (same command family, bypasses some optional checks; OP required by default)
+3. Create a doll:
+   - `/doll create <name> [skin]`
+4. Spawn a doll:
+   - `/doll spawn <name>`
+5. Most doll data changes require the doll to be online.
+   - Exception: `Remove`
+   - `/doll set` for doll-specific settings
+   - `/doll gset` for global settings (all players)
+   - `/doll pset` for player-specific overrides
+
+## Build
+
+```bash
+mvn clean package -DskipTests
+```
+

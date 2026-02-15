@@ -1,0 +1,4 @@
+/Output/
+/Output_Addons/**/target/
+*.iml
+.idea/
